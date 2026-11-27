@@ -1,7 +1,7 @@
 import re
 
 from config import WORD_PATTERN, STOPWORDS
-from statistics import empty_stats, add_word
+from word_stats import empty_stats, add_word
 
 
 WORD_REGEX = re.compile(WORD_PATTERN)
