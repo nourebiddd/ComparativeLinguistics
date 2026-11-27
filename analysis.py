@@ -9,7 +9,7 @@ from config import (
 
 from text_processing import analyze_file
 
-from statistics import (
+from word_stats import (
     empty_stats,
     merge_stats,
     finalize_stats

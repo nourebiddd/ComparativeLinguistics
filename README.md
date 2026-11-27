@@ -35,10 +35,15 @@ ComparativeLinguistics/
 │   ├── Spanish/
 │   └── Ukrainian/
 │
-├── main.py
-├── analysis.py
-├── stats.py
-├── tests.py
+├── Ergebnisse/          # generated charts and tables
+├── main.py              # entry point
+├── config.py            # paths, stopwords, Dask settings
+├── text_processing.py   # language detection, word extraction
+├── word_stats.py        # statistics (mergeable, used by Dask)
+├── analysis.py          # serial + Dask analysis, benchmark
+├── plots.py             # histograms and benchmark charts
+├── tests.py             # functional tests
+├── requirements.txt
 └── README.md
 ```
 
@@ -57,7 +62,7 @@ ComparativeLinguistics/
 - ⚡ **Parallel processing** with `dask.bag`
 - 📊 **Runtime comparison** — serial vs. Dask
 - 📈 **Scaling benchmark** with 364, 728, and 1456 files
-- ✅ **7 functional tests** including correctness check (serial == parallel)
+- ✅ **7 functional tests**, plus a correctness check (serial == parallel) on every run
 
 ---
 
@@ -66,7 +71,7 @@ ComparativeLinguistics/
 ### Prerequisites
 
 ```bash
-pip install dask matplotlib
+pip install -r requirements.txt
 ```
 
 ### Run the analysis
@@ -76,10 +81,11 @@ python main.py
 ```
 
 This will:
-1. Run the serial analysis
-2. Run the parallel Dask analysis
-3. Compare results and runtimes
-4. Generate histograms and benchmark charts
+1. Run the functional tests
+2. Run the serial analysis
+3. Run the parallel Dask analysis
+4. Compare results and runtimes
+5. Generate histograms and benchmark charts
 
 ---
 
@@ -115,17 +121,19 @@ The larger the dataset, the greater the advantage of parallel processing.
 
 ## 🧪 Tests
 
-All 7 functional tests pass:
+Run them on their own with `python tests.py` or `pytest tests.py`:
 
 | # | Test |
 |---|------|
-| 1 | Language detection from file path |
-| 2 | Word extraction from a line |
-| 3 | Stopword, number & special char removal |
-| 4 | Correct statistical calculation |
-| 5 | Empty input handling |
-| 6 | German umlaut recognition (ä, ö, ü) |
-| 7 | Serial and parallel results are identical ✅ |
+| 1 | Language detection from file path (Unix and Windows paths) |
+| 2 | Word extraction with stopword, number & special-character removal |
+| 3 | Correct statistical calculation |
+| 4 | Empty input handling |
+| 5 | German umlaut recognition (ä, ö, ü) |
+| 6 | Median with an even number of words |
+| 7 | Merging partial statistics (as Dask does) equals analysing everything at once |
+
+In addition, `main.py` asserts that the serial and the Dask results are identical ✅
 
 ---
 
