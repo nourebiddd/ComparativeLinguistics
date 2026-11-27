@@ -1,6 +1,11 @@
 # 📊 ComparativeLinguistics
 **Parallele Textanalyse mit Dask** | *Parallel Text Analysis with Dask*
 
+![Python](https://img.shields.io/badge/Python-3-3776AB?logo=python&logoColor=white)
+![Dask](https://img.shields.io/badge/Dask-parallel-FDA061?logo=dask&logoColor=white)
+![Speedup](https://img.shields.io/badge/speedup-up%20to%205.7×-success)
+![Tests](https://img.shields.io/badge/tests-7%20passing-brightgreen)
+
 > A Python application that analyzes text files across multiple languages, computes word-length statistics, and compares serial vs. parallel processing performance using **Dask**.
 
 ---
